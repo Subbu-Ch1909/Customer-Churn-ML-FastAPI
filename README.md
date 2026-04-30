@@ -1,18 +1,35 @@
-**Customer Churn Prediction- End-to-End ML Pipeline with FastAPI Deployment.**
+**Customer Churn Prediction- End-to-End ML Pipeline with FastAPI Docker.**
 **Overview**
 This Project builds and deploys a machine learning system to predict customer churn in a telcom dataset.
-The Model identifies customers at high risk of leaving, enabling proactive retention strategies such as targeted offers or outreach
+The Model identifies customers at high risk of leaving, helping business take proactive retention actions such as targeted offers, outreach, or customer support.
 
-The System includes:
+**The System includes:**
 1. Data preprocessing pipeline
 2. Model Training and Validation
 3. Hyperparameter Tuning
 4. Threshold Optimization
 5. Feature Importance and analysis
-6. Production-ready deployment using FastAPI
+6. FastAPI based model deployment
+7. Docker Containerization for portability
+
+
+**Tech Stack** 
+**Languages & Libraries:** Python, Pandas, NumPy, Scikit-learn
+**Deployment:** FastAPI, Uvicorn 
+-Docker
+
+**Features**
+-End-to-end machine learning pipeline for churn prediction
+-Data preprocessing using Scikit-learn pipelines and ColumnTransformer
+-Hyperparameter tuning using GridsearchCV
+-Threshold optimization to improve recall and business impact
+-Model evaluation using ROC-AUC, Precision, Recall, and F1-score
+-FastAPI based REST API for real time predictions
+-Docker containerization for consistent and portable deployment
+
 
 **Business Problem**
-Customer churn directly impact revenue.
+Customer churn directly impacts revenue.
 By predicting which customers are likely to leave, business can:
 1. Target high-risk customers
 2. Reduce churn rate
@@ -28,7 +45,7 @@ This model outputs:
 3. Target Variable: Churn (Yes/NO)
 4. Churn rate : ~ 26%
 
-**Features Include**
+**Features Categories**
 1. Demographics (gender, SeniorCitizen)
 2. Service information (InternetService, Contract, TechSupport)
 3. Billing information (MonthlyCharges, TotalCharges, tenure)
@@ -62,6 +79,8 @@ Cross Validation ROC-AUC (5-fold mean): ~0.846
 **Threshold Optimization**
 Default Threshold: 0.5
 Optimized Threshold: 0.4
+Improved recall to better identify high-risk customers.
+
 
 **Hyperparameter Tuning**
 Used GridSearchCV to tune Logistic Regression regularization strength(C).
@@ -113,6 +132,13 @@ POST/predict
 }
 
 
+**Docker Setup**
+Build Docker image
+docker build -t churn-app
+
+**Run Container**
+docker run -p 8000:8000 churn-app
+
 **How to Run Locally**
 *1. create a virtual environment*
 pyhton -m venv venv
@@ -121,7 +147,7 @@ venv/scripts/activate
 *2. Install Dependencies*
 pip install -r requirements.txt
 
-*3. Start tthe API*
+*3. Start the API*
 uvicorn app:app --reload
 
 **Project Structure:**
@@ -132,3 +158,4 @@ uvicorn app:app --reload
 |--churn_pipeline.pkl
 |--requirements.txt
 |--README.md
+|--Dockerfile
